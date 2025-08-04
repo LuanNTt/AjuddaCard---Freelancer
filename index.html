@@ -244,7 +244,7 @@
 }
 
 .feature-icon {
-  width: 80px;
+  width: 40px;
   height: auto;
   margin: 0 auto;
   display: block;
@@ -1500,224 +1500,326 @@ document.addEventListener('DOMContentLoaded', function() {
       padding-bottom: 5rem !important;
     }
   </style>
-  <style>
-/* Estilos otimizados para as tabelas */
-.plan-pricing-table {
-  margin-bottom: 1.5rem;
-}
-
-.plan-pricing-table table {
-  width: 100%;
-  background-color: rgba(255,255,255,0.1);
-  border-radius: 8px;
-}
-
-.plan-pricing-table th {
-  font-size: 0.8rem;
-  font-weight: 600;
-  padding: 0.5rem;
-  text-align: center;
-  border-bottom: 1px solid rgba(0,0,0,0.1);
-}
-
-.plan-pricing-table td {
-  font-size: 0.9rem;
-  padding: 0.5rem;
-  text-align: center;
-  border-bottom: 1px solid rgba(0,0,0,0.05);
-}
-
-.plan-pricing-table.text-white th {
-  border-bottom-color: rgba(255,255,255,0.2);
-}
-
-.plan-pricing-table.text-white td {
-  border-bottom-color: rgba(255,255,255,0.1);
-}
-
-/* Garante que o texto não quebre linha */
-.text-nowrap {
-  white-space: nowrap;
-}
-
-/* Container de benefícios com altura fixa */
-.plan-benefits-container {
-  min-height: 210px;
-}
-
-/* Scroll para muitos benefícios */
-.plan-benefits-container {
-  overflow-y: auto;
-  scrollbar-width: thin;
-  scrollbar-color: #6a11cb #f1f1f1;
-}
-
-.plan-benefits-container::-webkit-scrollbar {
-  width: 6px;
-}
-
-.plan-benefits-container::-webkit-scrollbar-track {
-  background: #f1f1f1;
-  border-radius: 10px;
-}
-
-.plan-benefits-container::-webkit-scrollbar-thumb {
-  background-color: #6a11cb;
-  border-radius: 10px;
-}
-
-/* Ajustes para responsividade */
-@media (max-width: 768px) {
-  .plan-pricing-table th, 
-  .plan-pricing-table td {
-    font-size: 0.75rem;
-    padding: 0.4rem;
+ <style>
+  .plans-section {
+    background: #f8f9fa;
+    padding: 4rem 0;
   }
   
-  .plan-benefits-container {
-    height: auto !important;
-    max-height: 210px;
+  .plan-card {
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    transition: all 0.3s ease;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    border: 1px solid rgba(78, 32, 176, 0.1);
+    overflow: hidden;
   }
   
-  .plan-benefits li {
+  .plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(78, 32, 176, 0.1);
+  }
+  
+  .plan-header {
+    padding: 1.5rem;
+    border-bottom: 1px solid rgba(78, 32, 176, 0.1);
+  }
+  
+  .plan-tagline {
     font-size: 0.9rem;
+    color: #4e20b0;
+    font-weight: 500;
+    margin-bottom: 0.5rem;
   }
-}
+  
+  .plan-title {
+    font-size: 1.5rem;
+    font-weight: 700;
+    color: #343a40;
+    margin-bottom: 0.5rem;
+  }
+  
+  .plan-price {
+    font-size: 1.8rem;
+    font-weight: 700;
+    color: #4e20b0;
+    margin-bottom: 0;
+  }
+  
+  .plan-price small {
+    font-size: 1rem;
+    font-weight: 400;
+    color: #6c757d;
+  }
+  
+  .plan-features {
+    padding: 1.5rem;
+    flex-grow: 1;
+  }
+  
+  .feature-list {
+    padding-left: 0;
+    margin-bottom: 0;
+  }
+  
+  .feature-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.75rem;
+    font-size: 0.95rem;
+    padding-left: 0;
+  }
+  
+  .feature-icon {
+    margin-right: 0.75rem;
+    color: #4e20b0;
+    font-size: 1.1rem;
+    min-width: 20px;
+    text-align: center;
+  }
+  
+  .feature-icon.x-icon {
+    color: #dc3545;
+  }
+  
+  .feature-text {
+    flex: 1;
+  }
+  
+  .plan-footer {
+    padding: 1.5rem;
+    padding-top: 0;
+    text-align: center;
+  }
+  
+  .btn-plan {
+    background-color: #4e20b0;
+    color: white;
+    border: none;
+    border-radius: 50px;
+    padding: 0.75rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    width: 100%;
+    max-width: 200px;
+  }
+  
+  .btn-plan:hover {
+    background-color: #3a1891;
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(78, 32, 176, 0.3);
+  }
+  
+  @media (max-width: 992px) {
+    .plan-col {
+      margin-bottom: 1.5rem;
+    }
+  }
+  
+  @media (max-width: 768px) {
+    .plan-card {
+      max-width: 350px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
 </style>
-<!-- Seção de Planos Ajudda a -->
-<section class="ajudda-plans-section py-6" id="planos">
+
+<!-- Seção de Planos -->
+<section class="plans-section">
   <div class="container">
-    <div class="row g-4">
-      <!-- Card Planos Essenciais -->
-      <div class="col-md-6 d-flex flex-column">
-        <div class="ajudda-plan-card bg-white rounded-4 h-100 p-4 p-lg-5 d-flex flex-column">
-          <!-- Cabeçalho com Ícone -->
-          <div class="plan-header text-center mb-4">
-            <div class="plan-icon mx-auto mb-3">
-              <i class="bi bi-heart-pulse" style="font-size: 2.5rem; color: #6a11cb;"></i>
-            </div>
-            <h3 class="plan-title fw-bold">Planos Essenciais</h3>
-            <p class="text-muted small">Indicados para clínicas mais populares</p>
+    <div class="row">
+      <!-- Plano Essencial Individual -->
+      <div class="col-lg-3 col-md-6 plan-col">
+        <div class="plan-card">
+          <div class="plan-header">
+            <div class="plan-tagline"></div>
+            <h3 class="plan-title">Essencial Individual</h3>
+            <div class="plan-price">R$ 9,90 <small>/mês</small></div>
           </div>
           
-          <!-- Tabela de Preços - Versão Otimizada -->
-          <div class="plan-pricing-table mb-4 flex-grow-1">
-            <div class="table-responsive">
-              <table class="table table-borderless m-0">
-                <thead>
-                  <tr>
-                    <th class="text-nowrap">Tipo</th>
-                    <th class="text-nowrap text-center">Sem Telemedicina</th>
-                    <th class="text-nowrap text-center">Com Telemedicina + Telepet</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="text-nowrap">Individual</td>
-                    <td class="text-nowrap text-center">R$ 9,90/mês</td>
-                    <td class="text-nowrap text-center">R$ 21,90/mês</td>
-                  </tr>
-                  <tr>
-                    <td class="text-nowrap">Familiar</td>
-                    <td class="text-nowrap text-center">R$ 29,90/mês</td>
-                    <td class="text-nowrap text-center">R$ 33,90/mês</td>
-                  </tr>
-                  <tr>
-                    <td colspan="3" class="small text-muted pt-2 pb-0">Essencial 1 (Individual)<br>Essencial 2 (Familiar)</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          
-          <!-- Benefícios - Lista fixa -->
-          <div class="plan-benefits-container mb-4" style="height: 210px;">
-            <ul class="plan-benefits list-unstyled mb-0">
-              <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Até 3 dependentes sem custo</li>
-              <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Cirurgias com até 30% de desconto</li>
-              <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Exames com até 80% de desconto</li>
-              <li class="mb-2"><i class="bi bi-check-circle-fill text-primary me-2"></i> Medicamentos com 30% de desconto</li>
-              <li class="mb-2"><i class="bi bi-question-circle-fill text-primary me-2"></i> Adesão: (valor da mensalidade)</li>
-              <li class="mb-2"><i class="bi bi-x-circle-fill text-primary me-2"></i> Sem pronto socorro 24h</li>
+          <div class="plan-features">
+            <ul class="feature-list">
+              <li class="feature-item">
+                <i class="bi bi-check-circle-fill feature-icon"></i>
+                <span class="feature-text">1 pessoa</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-check-circle-fill feature-icon"></i>
+                <span class="feature-text">Exames até 80% OFF</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-check-circle-fill feature-icon"></i>
+                <span class="feature-text">Cirurgias até 30% OFF</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-check-circle-fill feature-icon"></i>
+                <span class="feature-text">Medicamentos com desconto</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-x-circle-fill feature-icon x-icon"></i>
+                <span class="feature-text">Sem telemedicina</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-x-circle-fill feature-icon x-icon"></i>
+                <span class="feature-text">Sem telepet</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-x-circle-fill feature-icon x-icon"></i>
+                <span class="feature-text">Sem pronto socorro</span>
+              </li>
             </ul>
           </div>
           
-          <!-- Botões - Alinhados na base -->
-          <div class="plan-actions text-center mt-auto">
-            <a href="http://3.215.147.199/fidelidade-ajudda/planos/1" class="btn btn-primary btn-lg rounded-pill px-4 mb-2 w-100">
-              Assine agora
-            </a>
-            <p class="small text-muted mb-0">
-              ou tire dúvidas via <a href="https://wa.me/5585984415490" class="text-decoration-underline">WhatsApp</a>
-            </p>
+<div class="plan-footer">
+  <button class="btn btn-plan" onclick="window.location.href='http://3.215.147.199/fidelidade-ajudda/planos/1'">Assinar agora</button>
+</div>
+        </div>
+      </div>
+      
+      <!-- Plano Essencial Familiar -->
+      <div class="col-lg-3 col-md-6 plan-col">
+        <div class="plan-card">
+          <div class="plan-header">
+            <div class="plan-tagline"></div>
+            <h3 class="plan-title">Essencial Familiar</h3>
+            <div class="plan-price">R$ 29,90 <small>/mês</small></div>
+          </div>
+          
+          <div class="plan-features">
+            <ul class="feature-list">
+              <li class="feature-item">
+                <i class="bi bi-check-circle-fill feature-icon"></i>
+                <span class="feature-text">1 titular + 3 dependentes</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-check-circle-fill feature-icon"></i>
+                <span class="feature-text">Exames até 80% OFF</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-check-circle-fill feature-icon"></i>
+                <span class="feature-text">Cirurgias até 30% OFF</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-check-circle-fill feature-icon"></i>
+                <span class="feature-text">Medicamentos com desconto</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-x-circle-fill feature-icon x-icon"></i>
+                <span class="feature-text">Sem telemedicina</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-x-circle-fill feature-icon x-icon"></i>
+                <span class="feature-text">Sem telepet</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-x-circle-fill feature-icon x-icon"></i>
+                <span class="feature-text">Sem pronto socorro</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="plan-footer">
+<button class="btn btn-plan" onclick="window.location.href='http://3.215.147.199/fidelidade-ajudda/planos/1'">Assinar agora</button>
           </div>
         </div>
       </div>
       
-      <!-- Card Planos Plus -->
-      <div class="col-md-6 d-flex flex-column">
-        <div class="ajudda-plan-card bg-primary text-white rounded-4 h-100 p-4 p-lg-5 d-flex flex-column">
-          <!-- Cabeçalho com Ícone -->
-          <div class="plan-header text-center mb-4">
-            <div class="plan-icon mx-auto mb-3">
-              <i class="bi bi-shield-plus" style="font-size: 2.5rem; color: white;"></i>
-            </div>
-            <h3 class="plan-title fw-bold">Planos Plus</h3>
-            <p class="text-white-50 small">Indicados para clínicas premium (ex: Otomax, Qorpo)</p>
+      <!-- Plano Plus Individual -->
+      <div class="col-lg-3 col-md-6 plan-col">
+        <div class="plan-card">
+          <div class="plan-header">
+            <div class="plan-tagline"></div>
+            <h3 class="plan-title">Plus Individual</h3>
+            <div class="plan-price">R$ 27,90 <small>/mês</small></div>
           </div>
           
-          <!-- Tabela de Preços - Versão Otimizada -->
-          <div class="plan-pricing-table mb-4 flex-grow-1">
-            <div class="table-responsive">
-              <table class="table table-borderless text-white m-0">
-                <thead>
-                  <tr>
-                    <th class="text-nowrap">Tipo</th>
-                    <th class="text-nowrap text-center">Sem Telemedicina</th>
-                    <th class="text-nowrap text-center">Com Telemedicina + Telepet</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td class="text-nowrap">Individual</td>
-                    <td class="text-nowrap text-center">R$ 27,90/mês</td>
-                    <td class="text-nowrap text-center">R$ 38,90/mês</td>
-                  </tr>
-                  <tr>
-                    <td class="text-nowrap">Familiar</td>
-                    <td class="text-nowrap text-center">R$ 42,90/mês</td>
-                    <td class="text-nowrap text-center">R$ 59,90/mês</td>
-                  </tr>
-                  <tr>
-                    <td colspan="3" class="small text-white-50 pt-2 pb-0">Plus 1 (Individual)<br>Plus 2 (Familiar)</td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-          </div>
-          
-          <!-- Benefícios - Lista fixa (mesma altura do Essencial) -->
-          <div class="plan-benefits-container mb-4" style="height: 210px; overflow-y: auto;">
-            <ul class="plan-benefits list-unstyled mb-0">
-              <li class="mb-2"><i class="bi bi-check-circle-fill text-white me-2"></i> Até 3 dependentes sem custo</li>
-              <li class="mb-2"><i class="bi bi-check-circle-fill text-white me-2"></i> Exames com até 80% de desconto</li>
-              <li class="mb-2"><i class="bi bi-check-circle-fill text-white me-2"></i> Cirurgias com até 30% de desconto</li>
-              <li class="mb-2"><i class="bi bi-check-circle-fill text-white me-2"></i> Medicamentos com 30% de desconto</li>
-              <li class="mb-2"><i class="bi bi-check-circle-fill text-white me-2"></i> Telemedicina ilimitada</li>
-              <li class="mb-2"><i class="bi bi-check-circle-fill text-white me-2"></i> Pronto socorro 24h online</li>
-              <li class="mb-2"><i class="bi bi-question-circle-fill text-white me-2"></i> Adesão: (valor da mensalidade)</li>
-              <li class="mb-2"><i class="bi bi-check-circle-fill text-white me-2"></i> Sem limite de pets cadastrados</li>
+          <div class="plan-features">
+            <ul class="feature-list">
+              <li class="feature-item">
+                <i class="bi bi-check-circle-fill feature-icon"></i>
+                <span class="feature-text">1 pessoa</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-check-circle-fill feature-icon"></i>
+                <span class="feature-text">Telemedicina ilimitada</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-check-circle-fill feature-icon"></i>
+                <span class="feature-text">Telepet incluso</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-check-circle-fill feature-icon"></i>
+                <span class="feature-text">Pronto Socorro 24h</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-check-circle-fill feature-icon"></i>
+                <span class="feature-text">Exames até 80% OFF</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-check-circle-fill feature-icon"></i>
+                <span class="feature-text">Cirurgias até 30% OFF</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-check-circle-fill feature-icon"></i>
+                <span class="feature-text">Medicamentos com desconto</span>
+              </li>
             </ul>
           </div>
           
-          <!-- Botões - Alinhados na base (mesma posição) -->
-          <div class="plan-actions text-center mt-auto">
-            <a href="http://3.215.147.199/fidelidade-ajudda/planos/1" class="btn btn-light btn-lg rounded-pill px-4 mb-2 w-100">
-              Assine agora
-            </a>
-            <p class="small text-white-50 mb-0">
-              ou tire dúvidas via <a href="https://wa.me/5585984415490" class="text-white text-decoration-underline">WhatsApp</a>
-            </p>
+          <div class="plan-footer">
+<button class="btn btn-plan" onclick="window.location.href='http://3.215.147.199/fidelidade-ajudda/planos/1'">Assinar agora</button>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Plano Plus Familiar -->
+      <div class="col-lg-3 col-md-6 plan-col">
+        <div class="plan-card">
+          <div class="plan-header">
+            <div class="plan-tagline"></div>
+            <h3 class="plan-title">Plus Familiar</h3>
+            <div class="plan-price">R$ 42,90 <small>/mês</small></div>
+          </div>
+          
+          <div class="plan-features">
+            <ul class="feature-list">
+              <li class="feature-item">
+                <i class="bi bi-check-circle-fill feature-icon"></i>
+                <span class="feature-text">1 titular + 3 dependentes</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-check-circle-fill feature-icon"></i>
+                <span class="feature-text">Telemedicina ilimitada</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-check-circle-fill feature-icon"></i>
+                <span class="feature-text">Telepet incluso</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-check-circle-fill feature-icon"></i>
+                <span class="feature-text">Pronto Socorro 24h</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-check-circle-fill feature-icon"></i>
+                <span class="feature-text">Exames até 80% OFF</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-check-circle-fill feature-icon"></i>
+                <span class="feature-text">Cirurgias até 30% OFF</span>
+              </li>
+              <li class="feature-item">
+                <i class="bi bi-check-circle-fill feature-icon"></i>
+                <span class="feature-text">Medicamentos com desconto</span>
+              </li>
+            </ul>
+          </div>
+          
+          <div class="plan-footer">
+<button class="btn btn-plan" onclick="window.location.href='http://3.215.147.199/fidelidade-ajudda/planos/1'">Assinar agora</button>
           </div>
         </div>
       </div>
